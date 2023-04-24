@@ -1,0 +1,51 @@
+{
+  /** 폰트 */
+  "editor.fontFamily": "D2Coding, Menlo, Monaco, 'Courier New', monospace",
+  "editor.fontSize": 15,
+
+  // 파일 및 폴더 정렬순서
+  //  - default: 파일과 폴더를 알파벳순으로 정렬됩니다. 폴더는 파일 앞에 표시됩니다.
+  //  - mixed: 파일 폴더 상관 없이 알파벳순으로 정렬됩니다.
+  //  - filesFirst: 파일과 폴더를 알파벳순으로 정렬됩니다. 파일은 폴더 앞에 표시됩니다.
+  //  - type: 확장자를 기준으로 파일과 폴더를 알파벳순으로 정렬됩니다. 폴더는 파일 앞에 표시됩니다.
+  //  - modified: 마지막 수정 날짜를 기준으로 파일과 폴더를 내림차순으로 정렬됩니다. 폴더는 파일 앞에 표시됩니다.
+  "explorer.sortOrder": "default",
+
+  /** 검색 예외 파일 및 디렉토리 */
+  "files.watcherExclude": {
+    "**/.git/objects/**": true,
+    "**/.git/subtree-cache/**": true,
+    "**/node_modules/*/**": true
+  },
+
+  /** 검색 예외 파일 및 디렉토리 */
+  "search.exclude": {
+    "**/dist": true,
+    "**/bundle": true,
+    "**/bower_components": true,
+    "**/.git/objects/**": true,
+    "**/.git/subtree-cache/**": true
+  },
+
+  /** 코드 저장시 실행할 액션 */
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true,
+    "source.fixAll.tslint": true,
+    "source.fixAll.stylelint": false
+  },
+
+  /** 기본 포멧팅 */
+  "files.insertFinalNewline": true,
+  "files.encoding": "utf8",
+  "files.eol": "\n", //  CRLF, LF로 인한 git diff를 막기 위해 줄바꿈 통일
+  "editor.tabSize": 2,
+  "editor.insertSpaces": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+
+  "cSpell.words": [
+    "autodocs",
+    "lazyload",
+    "svgr",
+    "tanstack"
+  ]
+}

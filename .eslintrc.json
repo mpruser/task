@@ -1,0 +1,69 @@
+{
+  "env": {
+    "browser": true,
+    "es2020": true,
+    "node": true
+  },
+  "globals": {
+    "JSX": true,
+    "AndroidClient": true
+  },
+  "extends": ["plugin:react/recommended", "airbnb"],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 6,
+    "sourceType": "module"
+  },
+  "plugins": ["react", "@typescript-eslint"],
+  "ignorePatterns": ["dist/", "node_modules/", "public/", "@types/", "**/*.stories.*", "**/*.css", "**/*.mdx", "**/assets/*"],
+  "rules": {
+    "max-len": ["warn", { "code": 150 }],
+    "no-use-before-define": "off",
+    "no-undef": "off",
+    "no-unused-expressions": "off",
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": ["warn", { "ignoreRestSiblings": true }],
+    "@typescript-eslint/no-use-before-define": "error",
+    "jsx-a11y/label-has-associated-control": "off",
+    "jsx-a11y/click-events-have-key-events": "off",
+    "react/jsx-filename-extension": [2, { "extensions": [".js", ".jsx", ".ts", ".tsx"] }],
+    "react/prop-types": "off",
+    "react/button-has-type": "off",
+    "react/jsx-props-no-spreading": "off",
+    "react/require-default-props": "off",
+    "react/no-children-prop": "off",
+    "import/prefer-default-export": "off",
+    "object-curly-newline": ["error", { "ImportDeclaration": "never", "ExportDeclaration": "never" }],
+    "arrow-body-style": "off",
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "js": "never",
+        "jsx": "never",
+        "ts": "never",
+        "tsx": "never"
+      }
+    ]
+  },
+  "settings": {
+    "react": {
+      // eslint-plugin-react에게 사용하고 있는 리액트의 버전을 알아서 탐지하도록 한다.
+      "version": "detect"
+    },
+    // 해당 확장자 모듈 가져오도록 등록
+    "import/resolver": {
+      "node": {
+        "moduleDirectory": ["node_modules", "./src/"],
+        "extensions": [".js", ".jsx", ".ts", ".tsx"],
+        "paths": ["./"]
+      },
+      "webpack": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      }
+    }
+  }
+}
