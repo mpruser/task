@@ -2,7 +2,7 @@ import React from 'react';
 import { ThemeProvider } from 'styled-components';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { GlobalStyle, theme } from '@styles';
-import { LazyLoadProvider, SearchHistoryProvider } from '@contexts';
+import { LazyLoadProvider, SearchHistoryProvider, QueryParamsProvider } from '@contexts';
 
 /**
  * react-query client 생성
@@ -17,11 +17,13 @@ const App = () => {
     <ThemeProvider theme={theme}>
       <GlobalStyle />
       <QueryClientProvider client={queryClient}>
-        <SearchHistoryProvider>
-          <LazyLoadProvider>
-            content
-          </LazyLoadProvider>
-        </SearchHistoryProvider>
+        <QueryParamsProvider>
+          <SearchHistoryProvider>
+            <LazyLoadProvider>
+              content
+            </LazyLoadProvider>
+          </SearchHistoryProvider>
+        </QueryParamsProvider>
       </QueryClientProvider>
     </ThemeProvider>
   );
