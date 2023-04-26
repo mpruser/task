@@ -2,7 +2,7 @@ import React from 'react';
 import { ThemeProvider } from 'styled-components';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { GlobalStyle, theme } from '@styles';
-
+import { LazyLoadProvider } from '@contexts';
 /**
  * react-query client 생성
  */
@@ -16,7 +16,9 @@ const App = () => {
     <ThemeProvider theme={theme}>
       <GlobalStyle />
       <QueryClientProvider client={queryClient}>
-        content
+        <LazyLoadProvider>
+          content
+        </LazyLoadProvider>
       </QueryClientProvider>
     </ThemeProvider>
   );
