@@ -1,9 +1,9 @@
-import axios from 'axios';
+import { fetch } from '@utils';
 
 /**
  * 이미지 조회 파라미터
  */
-export interface GetImageParams {
+export interface GetSearchImageParams {
   query: string;
   sort?: 'accuracy' | 'recency';
   page?: number;
@@ -13,7 +13,7 @@ export interface GetImageParams {
 /**
  * 이미지 조회 응답값
  */
-export interface GetImageResponse {
+export interface GetSearchImageResponse {
   meta: {
     'total_count': number,
     'pageable_count': number,
@@ -34,9 +34,6 @@ export interface GetImageResponse {
 /**
  * 이미지 조회 API
  */
-export const getImage = (params:GetImageParams) => {
-  return axios.get<GetImageResponse>('https://dapi.kakao.com/v2/search/image', {
-    params,
-    headers: { Authorization: `KakaoAK ${process.env.KAKAO_API_KEY}` },
-  });
+export const getSearchImage = (params: GetSearchImageParams) => {
+  return fetch.get<GetSearchImageResponse>('v2/search/image', { ...params });
 };
