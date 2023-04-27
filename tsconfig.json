@@ -67,6 +67,8 @@
       "@assets/*": ["src/assets/*"],
       "@styles": ["src/styles"],
       "@styles/*": ["src/styles/*"],
+      "@models": ["src/models"],
+      "@models/*": ["src/models/*"],
      },
     // "rootDirs": [],                              /* List of root folders whose combined content represents the structure of the project at runtime. */
     // "typeRoots": [],                             /* List of folders to include type definitions from. */

@@ -29,6 +29,7 @@ module.exports = {
       '@utils': path.resolve(__dirname, '../src/utils'),
       '@styles': path.resolve(__dirname, '../src/styles'),
       '@assets': path.resolve(__dirname, '../src/assets'),
+      '@models': path.resolve(__dirname, '../src/models'),
     },
   },
   plugins: [
