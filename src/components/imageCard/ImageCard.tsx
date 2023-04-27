@@ -46,9 +46,10 @@ export const ImageCardComponent = forwardRef<HTMLDivElement, ImageCardProps>(({ 
  */
 export const ImageCard = styled(ImageCardComponent)`
   --direction: 0.2s;
+  --radius: 0.8rem;
 
   overflow: hidden;
-  border-radius: 8px;
+  border-radius: var(--radius);
   transform: translate3d(0, 0, 0);
   transition: box-shadow var(--direction);
 
@@ -80,8 +81,8 @@ export const ImageCard = styled(ImageCardComponent)`
     box-sizing: border-box;
     width: 100%;
     padding: 1.6rem 1.5rem 1.2rem;
-    border-bottom-left-radius: inherit;
-    border-bottom-right-radius: inherit;
+    border-bottom-left-radius: var(--radius);
+    border-bottom-right-radius: var(--radius);
     border: 1px solid ${({ theme }) => theme.color.gray8}; ;
     border-top: none;
     transition: border var(--direction);
