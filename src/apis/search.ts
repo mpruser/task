@@ -34,6 +34,6 @@ export interface GetSearchImageResponse {
 /**
  * 이미지 조회 API
  */
-export const getSearchImage = (params: GetSearchImageParams) => {
-  return fetch.get<GetSearchImageResponse>('v2/search/image', { ...params });
+export const getSearchImage = ({ query, sort = 'accuracy', size = 10, page }: GetSearchImageParams) => {
+  return fetch.get<GetSearchImageResponse>('v2/search/image', { query, sort, size, page });
 };

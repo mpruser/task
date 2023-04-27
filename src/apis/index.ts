@@ -1,1 +1,1 @@
-export * from './getImage';
+export * from './search';
