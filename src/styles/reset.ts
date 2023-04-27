@@ -42,6 +42,9 @@ export const reset = css`
     content: '';
     content: none;
   }
+  a {
+    text-decoration: none;
+  }
   table {
     border-collapse: collapse;
     border-spacing: 0;
