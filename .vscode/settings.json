@@ -44,7 +44,10 @@
 
   "cSpell.words": [
     "autodocs",
+    "datetime",
     "lazyload",
+    "noninteractive",
+    "sitename",
     "svgr",
     "tanstack"
   ]
