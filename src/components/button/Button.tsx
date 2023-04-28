@@ -30,12 +30,28 @@ export interface ButtonProps extends Omit<React.ButtonHTMLAttributes<HTMLButtonE
    * 우측에 표시할 아이콘 요소
    */
   suffixIcon?: React.ReactNode;
+  /**
+   * 텍스트 정렬
+   * @default center
+   */
+  textAlign?: 'left' | 'center' | 'right';
 }
 
 export const ButtonComponent = forwardRef<HTMLButtonElement, ButtonProps>(({
-  type = 'button', size = 'medium', fill = 'text', block, loading, prefixIcon, suffixIcon, disabled, className, children, ...props
+  type = 'button',
+  size = 'medium',
+  fill = 'text',
+  textAlign = 'center',
+  block,
+  loading,
+  prefixIcon,
+  suffixIcon,
+  disabled,
+  className,
+  children,
+  ...props
 }, ref) => {
-  const classNames = classnames(className, `is-fill-${fill}`, `is-${size}`, {
+  const classNames = classnames(className, `is-fill-${fill}`, `is-${size}`, `is-text-${textAlign}`, {
     'is-block': block,
     'is-loading': loading,
     'is-disabled': disabled,
@@ -65,7 +81,6 @@ export const Button = styled(ButtonComponent)`
   transition: all var(--direction);
   vertical-align: middle;
   user-select: none;
-  font: ${({ theme }) => theme.font.h5};
 
   .button__inner {
     display: flex;
@@ -75,20 +90,16 @@ export const Button = styled(ButtonComponent)`
     transition: all var(--direction);
   }
 
-  .button__prefix {
-    display: block;
-    flex-shrink: 0;
-    line-height: 0;
-  }
-
-  .button__suffix {
+  .button__prefix, .button__suffix {
     display: block;
     flex-shrink: 0;
     line-height: 0;
   }
 
   .button__content {
-    display: block;
+    display: flex;
+    justify-content: center;
+    flex-grow: 1;
     flex-shrink: 0;
   }
 
@@ -104,18 +115,21 @@ export const Button = styled(ButtonComponent)`
   }
 
   &.is-small {
-    padding: 1.2rem 0.4rem;
-    border-radius: 10rem;
+    padding: 0.4rem ${({ theme }) => theme.spacing.medium};
+    border-radius: 4rem;
+    font: ${({ theme }) => theme.font.h6};
   }
 
   &.is-medium {
-    padding: 1.6rem 1.2rem;
+    padding: 1.2rem ${({ theme }) => theme.spacing.large};
     border-radius: 1.2rem;
+    font: ${({ theme }) => theme.font.h5};
   }
 
   &.is-large {
-    padding: 1.6rem;
+    padding: 1.6rem ${({ theme }) => theme.spacing.large};
     border-radius: 1.2rem;
+    font: ${({ theme }) => theme.font.h5};
   }
 
   &.is-fill {
@@ -139,9 +153,6 @@ export const Button = styled(ButtonComponent)`
       }
 
       &:not(.is-disabled) {
-        &:hover {
-          background-color: ${({ theme }) => theme.color.gray3};
-        }
         &:active {
           background-color: ${({ theme }) => theme.color.gray8};
         }
@@ -166,14 +177,24 @@ export const Button = styled(ButtonComponent)`
       }
 
       &:not(.is-disabled) {
-        &:hover{
-          background-color: ${({ theme }) => theme.color.gray3};
-        }
-
         &:active {
           background-color: ${({ theme }) => theme.color.gray8};
         }
       }
+    }
+  }
+
+  &.is-text {
+    &-left .button__content {
+      justify-content: start;
+    }
+    
+    &-right .button__content {
+      justify-content: end ;
+    }
+
+    &-center .button__content {
+      justify-content: center;
     }
   }
 
