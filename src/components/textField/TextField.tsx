@@ -2,7 +2,7 @@ import React, { forwardRef, useState } from 'react';
 import styled from 'styled-components';
 import classnames from 'classnames';
 
-export interface TextFieldProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'type' | 'size'> {
+export interface TextFieldProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'type' | 'size'| 'prefix'> {
   /**
    * size 설정
    * @default medium
@@ -13,11 +13,19 @@ export interface TextFieldProps extends Omit<React.InputHTMLAttributes<HTMLInput
    * @default false
    */
   error?: boolean;
+  /**
+   * 앞에 붙일 요소
+   */
+  prefix?: React.ReactNode;
+  /**
+   * 뒤에 붙일 요소
+   */
+  suffix?: React.ReactNode;
 }
 
 export const TextFieldComponent = forwardRef<HTMLInputElement, TextFieldProps>((
   {
-    size = 'medium', error, disabled, className, onFocus, onBlur, ...props
+    size = 'medium', error, disabled, className, prefix, suffix, onFocus, onBlur, ...props
   }, ref,
 ) => {
   // input요소의 focus 상태를 체크하기 위한 state
@@ -47,7 +55,18 @@ export const TextFieldComponent = forwardRef<HTMLInputElement, TextFieldProps>((
 
   return (
     <span className={classNames}>
-      <input ref={ref} type="text" onFocus={handleFocus} onBlur={handleBlur} disabled={disabled} {...props} />
+      {prefix && <span className="textfield__prefix">{prefix}</span>}
+      <span className="textfield__input">
+        <input
+          ref={ref}
+          type="text"
+          onFocus={handleFocus}
+          onBlur={handleBlur}
+          disabled={disabled}
+          {...props}
+        />
+      </span>
+      {suffix && <span className="textfield__suffix">{suffix}</span>}
     </span>
   );
 });
@@ -60,10 +79,25 @@ export const TextField = styled(TextFieldComponent)`
 
   display: flex;
   overflow: hidden;
-  outline: ${({ theme }) => `0.1rem solid ${theme.color.gray30}`};
+  box-shadow: ${({ theme }) => `0 0 0 0.1rem ${theme.color.black}`};
   border-radius: 1.2rem;
-  transition: outline var(--active-direction);
+  transition: box-shadow var(--active-direction);
 
+  .textfield__prefix,
+  .textfield__suffix {
+    display: flex;
+    flex-shrink: 0;
+    line-height: 0;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .textfield__input {
+    display: block;
+    flex-grow: 1;
+    flex-shrink: 0;
+  }
+  
   input {
     display: block;
     box-sizing: border-box;
@@ -89,7 +123,7 @@ export const TextField = styled(TextFieldComponent)`
 
   &.is-medium {
     font: ${({ theme }) => theme.font.h5};
-    
+
     input{
       padding: 1.2rem 1.6rem;
     }
@@ -104,12 +138,7 @@ export const TextField = styled(TextFieldComponent)`
   }
   
   &.is-active {
-    outline-width: 0.2rem;
-    outline-color: ${({ theme }) => theme.color.black};
-
-    input::placeholder {
-      color: ${({ theme }) => theme.color.black};
-    }
+    box-shadow: ${({ theme }) => `0 0 0 0.2rem ${theme.color.black}`};
   }
   
   &.is-error {
