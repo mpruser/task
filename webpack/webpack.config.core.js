@@ -30,6 +30,7 @@ module.exports = {
       '@styles': path.resolve(__dirname, '../src/styles'),
       '@assets': path.resolve(__dirname, '../src/assets'),
       '@models': path.resolve(__dirname, '../src/models'),
+      '@pages': path.resolve(__dirname, '../src/pages'),
     },
   },
   plugins: [
