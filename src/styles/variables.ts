@@ -35,8 +35,8 @@ export const variables = css`
     --z-base: 0;
     --z-header: 100;
 
-    --spacing-large: 4.8rem;
-    --spacing-medium: 2.4rem;
+    --spacing-large: 1.6rem;
+    --spacing-medium: 1.2rem;
     --spacing-small: 0.8rem;
   }
 `;

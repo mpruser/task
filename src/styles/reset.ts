@@ -44,7 +44,12 @@ export const reset = css`
   }
   a {
     text-decoration: none;
+    background-color: transparent;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    user-select: none;
+    outline: 0;
   }
+
   table {
     border-collapse: collapse;
     border-spacing: 0;
@@ -52,5 +57,6 @@ export const reset = css`
   button {
     border: 0;
     background: 0;
+    outline: 0;
   }
 `;
