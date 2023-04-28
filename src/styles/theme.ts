@@ -38,6 +38,7 @@ export const theme = {
 
   z: {
     base: 'var(--z-base)',
+    content: 'var(--z-content)',
     header: 'var(--z-header)',
   },
 

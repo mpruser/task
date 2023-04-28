@@ -33,6 +33,7 @@ export const variables = css`
     --color-gray3      : rgba(247, 247, 247, 1);
 
     --z-base: 0;
+    --z-content: 50;
     --z-header: 100;
 
     --spacing-large: 1.6rem;
