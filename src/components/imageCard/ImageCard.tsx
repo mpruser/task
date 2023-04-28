@@ -56,6 +56,9 @@ export const ImageCard = styled(ImageCardComponent)`
   .card__link {
     display: block;
     width: 100%;
+    overflow: hidden;
+    border-radius: var(--radius);
+    box-shadow: 0 0 0 1px inset ${({ theme }) => theme.color.gray8};
   }
 
   .card__cover {
@@ -80,10 +83,10 @@ export const ImageCard = styled(ImageCardComponent)`
     display: block;
     box-sizing: border-box;
     width: 100%;
+    height: 7.4rem;
     padding: 1.6rem 1.5rem 1.2rem;
     border-bottom-left-radius: var(--radius);
     border-bottom-right-radius: var(--radius);
-    border: 1px solid ${({ theme }) => theme.color.gray8}; ;
     border-top: none;
     transition: border var(--direction);
   }
