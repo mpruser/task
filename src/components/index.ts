@@ -1,5 +1,6 @@
 export * from './button';
 export * from './conditional';
+export * from './exception';
 export * from './icon';
 export * from './image';
 export * from './imageCard';
