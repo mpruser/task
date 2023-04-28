@@ -1,17 +1,6 @@
 import React, { createContext, useState, useEffect } from 'react';
-import { SearchHistoryKey } from '@constants';
+import { SearchHistoryStorageKey, SearchHistory } from '@constants';
 import { useUpdateEffect } from '@hooks';
-
-export interface SearchHistory {
-  /**
-   * 검색 아이템 ID (검색시간을 ID로 사용)
-   */
-  id: string;
-  /**
-   * 검색어
-   */
-  keyword: string;
-}
 
 export interface SearchHistoryContextValue {
   /**
@@ -75,7 +64,7 @@ export const SearchHistoryProvider: React.FC<SearchHistoryProviderProps> = ({ ch
   };
 
   useEffect(() => {
-    const dataFromLocalStorage = localStorage.getItem(SearchHistoryKey);
+    const dataFromLocalStorage = localStorage.getItem(SearchHistoryStorageKey);
 
     if (dataFromLocalStorage) {
       setData(JSON.parse(dataFromLocalStorage));
@@ -83,7 +72,7 @@ export const SearchHistoryProvider: React.FC<SearchHistoryProviderProps> = ({ ch
   }, []);
 
   useUpdateEffect(() => {
-    localStorage.setItem(SearchHistoryKey, JSON.stringify(data));
+    localStorage.setItem(SearchHistoryStorageKey, JSON.stringify(data));
   }, [data]);
 
   return (

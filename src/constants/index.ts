@@ -1,2 +1,2 @@
 export * from './lazyLoad';
-export * from './searchHistory';
+export * from './search';
