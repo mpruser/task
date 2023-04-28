@@ -1,15 +1,16 @@
 /* eslint-disable jsx-a11y/no-noninteractive-tabindex */
 import React, { useRef, useState } from 'react';
 import styled from 'styled-components';
-import { SearchFieldName } from '@constants';
+import { SearchFieldName, SearchHistory } from '@constants';
 import { useSearchAction } from '@hooks';
 import { Button, List, TextField, Search } from '@components';
 
 export const SearchHeader = styled(({ className }) => {
-  const { history, search, removeAll, rediscover: handleRediscover } = useSearchAction();
+  const { history, search, removeAll, rediscover } = useSearchAction();
   const [isFieldActive, setFieldActiveState] = useState<boolean>(false);
 
   const searchFormRef = useRef<HTMLDivElement>(null);
+  const textFieldRef = useRef<HTMLInputElement>(null);
 
   /**
    * 검색필드에 포커스되었을 때 최근검색내역 영역활성화
@@ -26,6 +27,20 @@ export const SearchHeader = styled(({ className }) => {
     setFieldActiveState(false);
     // 휘발되는 포커스 영역을 검색영역으로 되돌림
     searchFormRef.current?.focus();
+  };
+
+  /**
+   * 최근 검색 내역 다시 검색
+   */
+  const handleRediscover = (item: SearchHistory) => {
+    rediscover(item);
+
+    if (textFieldRef.current) {
+      textFieldRef.current.value = item.keyword;
+      setFieldActiveState(false);
+      // 휘발되는 포커스 영역을 검색영역으로 되돌림
+      searchFormRef.current?.focus();
+    }
   };
 
   /**
@@ -52,6 +67,7 @@ export const SearchHeader = styled(({ className }) => {
         <div className="search__form" ref={searchFormRef} tabIndex={0}>
           <form onSubmit={handleSubmit}>
             <TextField
+              ref={textFieldRef}
               size="medium"
               placeholder="검색어를 입력해주세요"
               name={SearchFieldName.query}
