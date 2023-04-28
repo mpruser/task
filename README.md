@@ -13,7 +13,6 @@ $ yarn install --frozen-lockfile // or npm install --package-lock-only
 ```
 
 ### 3. 실행
-**npm 사용:**
 ```shell
 $ yarn run // or npm run start
 ```
