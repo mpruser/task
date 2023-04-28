@@ -3,6 +3,7 @@ import { ThemeProvider } from 'styled-components';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { GlobalStyle, theme } from '@styles';
 import { LazyLoadProvider, SearchHistoryProvider, QueryParamsProvider } from '@contexts';
+import { SearchImagePage } from '@pages';
 
 /**
  * react-query client 생성
@@ -20,7 +21,7 @@ const App = () => {
         <QueryParamsProvider>
           <SearchHistoryProvider>
             <LazyLoadProvider>
-              content
+              <SearchImagePage />
             </LazyLoadProvider>
           </SearchHistoryProvider>
         </QueryParamsProvider>
