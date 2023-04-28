@@ -56,7 +56,7 @@ export const SearchHeader = styled(({ className }) => {
               placeholder="검색어를 입력해주세요"
               name={SearchFieldName.query}
               onFocus={handelFocusField}
-              suffix={(<Button type="submit" size="small" children={<Search />} />
+              suffix={(<Button type="submit" size="small" aria-label="검색" children={<Search />} />
               )}
             />
           </form>
