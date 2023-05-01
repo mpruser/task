@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useSearchImage } from '@hooks';
-import { ImageCard, InfiniteSection, List, Spinner, Exception, Compass } from '@components';
+import { ImageCard, InfiniteSection, List, Spinner, Exception, Compass, Search } from '@components';
 
 /**
  * 검색 결과 container
@@ -9,12 +9,16 @@ import { ImageCard, InfiniteSection, List, Spinner, Exception, Compass } from '@
 export const SearchResults = styled(({ className }) => {
   const { data, hasNextPage, isFetching, isSuccess, isInitialLoading, fetchNextPage } = useSearchImage();
 
+  // 초기로드 중
   if (isInitialLoading) {
     return <Exception full visual={<Spinner size="large" />} message="" />;
   }
 
+  // 검색 결과 없을 때
   if (!data.length) {
-    return <Exception full visual={<Compass />} message={isSuccess ? '일치하는 검색결과가 없습니다' : '이미지를 검색할 수 있습니다'} />;
+    return isSuccess
+      ? <Exception full visual={<Compass />} message="일치하는 검색결과가 없습니다" />
+      : <Exception full visual={<Search />} message="이미지를 검색해 보세요" />;
   }
 
   return (
