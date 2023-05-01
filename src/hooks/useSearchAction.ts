@@ -24,7 +24,7 @@ export const useSearchAction = () => {
    */
   const removeAll = () => {
     // eslint-disable-next-line no-alert
-    if (window.confirm('최근검색어를 모두 삭제하시겠습니까?')) {
+    if (window.confirm('최근 검색어를 모두 삭제하시겠습니까?')) {
       clear();
     }
   };
