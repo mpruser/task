@@ -7,9 +7,12 @@ import { SearchHistoryContext, QueryParamsContext } from '@contexts';
  * 최근 검색 내역 hook
  */
 export const useSearchAction = () => {
-  const { updateQueryParam } = useContext(QueryParamsContext);
+  const { getQueryParam, updateQueryParam } = useContext(QueryParamsContext);
   const { data, add, clear } = useContext(SearchHistoryContext);
 
+  /**
+   * 검색하기
+   */
   const search = (e: React.FormEvent<HTMLFormElement>) => {
     const formData = new FormData(e.target as HTMLFormElement);
     const query = formData.get(SearchFieldName.query) as string;
@@ -19,6 +22,7 @@ export const useSearchAction = () => {
       add(query);
     }
   };
+
   /**
    * 최근 검색 내역 전체 삭제
    */
@@ -45,5 +49,6 @@ export const useSearchAction = () => {
     search,
     removeAll,
     rediscover,
+    getQueryParam,
   };
 };

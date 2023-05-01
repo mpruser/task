@@ -1,12 +1,12 @@
 /* eslint-disable jsx-a11y/no-noninteractive-tabindex */
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { SearchFieldName, SearchHistory } from '@constants';
 import { useSearchAction } from '@hooks';
 import { Button, List, TextField, Search } from '@components';
 
 export const SearchHeader = styled(({ className }) => {
-  const { history, search, removeAll, rediscover } = useSearchAction();
+  const { history, search, removeAll, rediscover, getQueryParam } = useSearchAction();
   const [isFieldActive, setFieldActiveState] = useState<boolean>(false);
 
   const searchFormRef = useRef<HTMLDivElement>(null);
@@ -60,6 +60,16 @@ export const SearchHeader = styled(({ className }) => {
     setFieldActiveState(false);
     search(e);
   };
+
+  /**
+   * 초기 input 세팅
+   */
+  useEffect(() => {
+    const query = getQueryParam(SearchFieldName.query);
+    if (query && textFieldRef.current) {
+      textFieldRef.current.value = query;
+    }
+  }, []);
 
   return (
     <div className={className}>
