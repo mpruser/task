@@ -40,11 +40,7 @@ export const useSearchAction = () => {
    * 키워드 재검색
    */
   const rediscover = ({ keyword }: SearchHistory) => {
-    if (keyword) {
-      const param: Pick<GetSearchImageParams, 'query'> = { query: keyword };
-      updateQueryParam(param);
-      add(keyword); // 재검색 키워드를 상위로 노출하기 위한 add
-    }
+    keyword && search({ query: keyword });
   };
 
   return {
