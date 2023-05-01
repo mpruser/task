@@ -1,24 +1,27 @@
 import { useContext } from 'react';
+import { useQueryClient } from '@tanstack/react-query';
 import { GetSearchImageParams } from '@apis';
-import { SearchFieldName, SearchHistory } from '@constants';
+import { SearchFieldName, SearchHistory, SearchQueryKeys } from '@constants';
 import { SearchHistoryContext, QueryParamsContext } from '@contexts';
 
 /**
  * 최근 검색 내역 hook
  */
 export const useSearchAction = () => {
+  const queryClient = useQueryClient();
   const { getQueryParam, updateQueryParam } = useContext(QueryParamsContext);
   const { data, add, clear } = useContext(SearchHistoryContext);
 
   /**
    * 검색하기
    */
-  const search = (e: React.FormEvent<HTMLFormElement>) => {
-    const formData = new FormData(e.target as HTMLFormElement);
-    const query = formData.get(SearchFieldName.query) as string;
+  const search = ({ query }: GetSearchImageParams) => {
+    const curQuery = getQueryParam(SearchFieldName.query);
 
     if (query) {
-      updateQueryParam({ query });
+      curQuery === query
+        ? queryClient.resetQueries({ queryKey: SearchQueryKeys.query({ query }), refetchPage: () => true })
+        : updateQueryParam({ query });
       add(query);
     }
   };

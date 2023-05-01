@@ -57,8 +57,13 @@ export const SearchHeader = styled(({ className }) => {
    */
   const handleSubmit = (e:React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setFieldActiveState(false);
-    search(e);
+    const formData = new FormData(e.target as HTMLFormElement);
+    const query = formData.get(SearchFieldName.query) as string;
+
+    if (query) {
+      setFieldActiveState(false);
+      search({ query });
+    }
   };
 
   /**

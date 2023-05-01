@@ -1,3 +1,5 @@
+import { GetSearchImageParams } from '@apis';
+
 /**
  * 최근 검색 내역을 저장을 위한 스토리지 키
  */
@@ -32,3 +34,13 @@ export type SearchFieldValueType = {
   query: string;
   sort: 'accuracy' | 'recency';
 }
+
+/**
+ *
+ */
+export const SearchQueryKeys = {
+  all: [{ scope: 'search-image' }] as const,
+  query: (params: Omit<GetSearchImageParams, 'page'>) => [{
+    ...SearchQueryKeys.all[0], entity: params.query, params,
+  }],
+} as const;
